@@ -1,54 +1,56 @@
 package scanners;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * Created by java2 on 17.08.17.
  */
 public class FileScanner {
+    public static int count = 0;
+    public static String PATH = "D:\\myjava\\com.hillel.core\\WisdomOfCrowds\\src\\resources\\";
+   // public static File dirtry = new File(PATH);
+    ArrayList<String> listFile = new ArrayList<>();
 
     public int scan(String word) throws IOException {
-        int count = 0;
-
-        //Scanner scnr = new Scanner(new BufferedReader(new FileReader("/home/java2/IdeaProjects/WisdomOfCrowds/src/resources/")));
-
-        String path = "/home/java2/IdeaProjects/WisdomOfCrowds/src/resources/";
-        File dir = new File(path);
 
 
-        ArrayList<String> listFile = new ArrayList<>();
-        ArrayList<String> listFile2 = new ArrayList<>();
 
-        for (File parent1 : dir.listFiles()) {
 
-            if (!parent1.isDirectory()) {
-                listFile.add(parent1.getName());
+        return count;
+    }
+
+    public int scanDir(String dir, String word) throws FileNotFoundException {
+        File dirtry = new File(dir);
+        File[] fList = dirtry.listFiles();
+
+        for (File file : fList) {
+            if (file.isFile()) {
+                if (readFile(file.getAbsolutePath(), word)) {
+                    count++;
+
+                }
             }
         }
+        return count;
+    }
 
-        for (int i = 0; i < listFile.size(); i++) {
-            listFile2.add(path + listFile.get(i));
-        }
-        //System.out.println(listFile2);
-
-
-        String line;
-        for (int i = 0; i < listFile2.size(); i++) {
-            BufferedReader fileReader = new BufferedReader(new FileReader(listFile2.get(i)));
-            while ((line = fileReader.readLine()) != null) {
-
+    public void readFile(String path, String word) throws FileNotFoundException {
+        count = 0;
+        File dir = new File(path);
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
                 if (line.contains(word)) {
+                    listFile.add(line);
                     count++;
                 }
             }
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return count;
+        //return count;
     }
 }
 

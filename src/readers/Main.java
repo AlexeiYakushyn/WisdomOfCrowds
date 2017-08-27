@@ -2,6 +2,7 @@ package readers;
 
 import scanners.FileScanner;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -23,7 +24,9 @@ public class Main {
 
         FileScanner scanner = new FileScanner();
 
-        System.out.println(scanner.scan("word"));
+       // System.out.println(FileScanner.PATH);
+       //scanner.scanDir(FileScanner.PATH, "word");
+        System.out.println(scanner.scanDir(FileScanner.PATH, "word"));
 
     }
 }

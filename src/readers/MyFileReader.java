@@ -11,13 +11,14 @@ import java.io.IOException;
 public class MyFileReader implements Readers {
 
     public static final String FILENAME = "/home/java2/IdeaProjects/WisdomOfCrowds/src/resources/myTextFile.txt";
-    BufferedReader fileReader = new BufferedReader(new FileReader(FILENAME));
 
     public MyFileReader() throws FileNotFoundException {
     }
 
     @Override
-    public String read() {
+    public String read() throws FileNotFoundException {
+        BufferedReader fileReader = new BufferedReader(new FileReader(FILENAME));
+
         String line = null;
         try {
             line = fileReader.readLine();
