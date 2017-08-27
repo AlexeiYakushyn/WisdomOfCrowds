@@ -9,12 +9,10 @@ import java.util.ArrayList;
 public class FileScanner {
     public static int count = 0;
     public static String PATH = "D:\\myjava\\com.hillel.core\\WisdomOfCrowds\\src\\resources\\";
-   // public static File dirtry = new File(PATH);
+    // public static File dirtry = new File(PATH);
     ArrayList<String> listFile = new ArrayList<>();
 
     public int scan(String word) throws IOException {
-
-
 
 
         return count;
@@ -26,16 +24,13 @@ public class FileScanner {
 
         for (File file : fList) {
             if (file.isFile()) {
-                if (readFile(file.getAbsolutePath(), word)) {
-                    count++;
-
-                }
+                count += readFile(file.getAbsolutePath(), word);
             }
         }
         return count;
     }
 
-    public void readFile(String path, String word) throws FileNotFoundException {
+    public int readFile(String path, String word) throws FileNotFoundException {
         count = 0;
         File dir = new File(path);
         BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -50,7 +45,7 @@ public class FileScanner {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //return count;
+        return count;
     }
 }
 
