@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Created by java2 on 17.08.17.
+ * Created by alexei.yakushyn on 17.08.17.
  */
 public class MyFileReader implements Readers {
 

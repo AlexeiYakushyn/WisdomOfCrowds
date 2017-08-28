@@ -6,17 +6,11 @@ import java.util.ArrayList;
 /**
  * Created by java2 on 17.08.17.
  */
-public class FileScanner {
+public class FileScanner implements Serializable {
     public static int count = 0;
-    public static String PATH = "D:\\myjava\\com.hillel.core\\WisdomOfCrowds\\src\\resources\\";
+    public static final String PATH = "E:\\ProgrammFiles\\hillel\\WisdomOfCrowds\\src\\resources\\";
     // public static File dirtry = new File(PATH);
-    ArrayList<String> listFile = new ArrayList<>();
-
-    public int scan(String word) throws IOException {
-
-
-        return count;
-    }
+    public ArrayList<String> listFile = new ArrayList<>();
 
     public int scanDir(String dir, String word) throws FileNotFoundException {
         File dirtry = new File(dir);
@@ -24,7 +18,13 @@ public class FileScanner {
 
         for (File file : fList) {
             if (file.isFile()) {
-                count += readFile(file.getAbsolutePath(), word);
+                if (file.getAbsolutePath().endsWith(".txt")) {
+                    count += readFile(file.getAbsolutePath(), word);
+                }
+            }
+            if (file.isDirectory()) {
+                String s = file.getAbsolutePath();
+                scanDir(s, word);
             }
         }
         return count;
